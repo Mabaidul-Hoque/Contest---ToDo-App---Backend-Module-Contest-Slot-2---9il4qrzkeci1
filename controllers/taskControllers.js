@@ -129,6 +129,18 @@ the latest data will be at the top.
 
 const getallTask = async (req, res) => {
   //Write your code here.
+  try{
+    const tasks = await Tasks.find();
+    res.status(200).json({
+      status: 'success',
+      data: tasks,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
 };
 
 module.exports = {

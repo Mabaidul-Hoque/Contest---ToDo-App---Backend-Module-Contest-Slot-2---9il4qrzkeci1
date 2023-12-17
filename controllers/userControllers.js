@@ -99,6 +99,28 @@ const logout = (req, res) => {
   const token = req.body.token;
 
   //Write your code here.
+  if(!token) {
+    return res.status(401).json({
+      status: 'fail',
+      message: 'Authentication failed: Missing token.',
+    });
+  }
+
+  try{
+    jwt.verify(token, JWT_SECRET);
+    res.clearCookies('token');
+
+    res.status(200).json({
+      message: "Logged out successfully.",
+      status: "Success",
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      message: 'Something went wrong',
+      error: err.message,
+    });
+  }
 };
 
 module.exports = { loginUser, signupUser, logout };
