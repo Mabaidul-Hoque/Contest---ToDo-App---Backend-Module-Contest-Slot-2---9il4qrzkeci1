@@ -115,7 +115,7 @@ const logout = (req, res) => {
       status: "Success",
     });
   } catch (err) {
-    res.status(500).json({
+    res.status(200).json({
       status: 'fail',
       message: 'Something went wrong',
       error: err.message,
