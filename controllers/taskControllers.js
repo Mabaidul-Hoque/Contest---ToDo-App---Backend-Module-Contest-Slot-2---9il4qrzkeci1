@@ -152,7 +152,7 @@ const getallTask = async (req, res) => {
     if(decodedToken.role === 'admin'){
 
     } else {
-      query.creator_id - decodedToken.userId;
+      query.creator_id = decodedToken.userId;
     }
 
     const tasks = await Tasks.find(query)
